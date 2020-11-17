@@ -113,7 +113,7 @@ class Builder:
                 cmake_flags.append("-DCMAKE_C_FLAGS=" + " ".join(c_flags))
                 cmake_flags.append("-DCMAKE_CXX_FLAGS=" + " ".join(c_flags))
                 cmake_flags.append("-DCMAKE_EXE_LINKER_FLAGS=" + " ".join(c_flags))
-                cmake_flags.append("-DCMAKE_Swift_FLAGS=" + " " + target_flag)
+                # cmake_flags.append("-DCMAKE_Swift_FLAGS=" + " " + target_flag)
                 cmake_flags.append("-DIOS=1")  # Build the iOS codebase
                 cmake_flags.append("-DMAC_CATALYST=1")  # Set a flag for Mac Catalyst, just in case we need it
                 cmake_flags.append("-DWITH_OPENCL=OFF")  # Disable OpenCL; it isn't compatible with iOS
@@ -293,6 +293,8 @@ class Builder:
         execute(["cmake", "-DBUILD_TYPE=%s" % self.getConfiguration(), "-P", "cmake_install.cmake"], cwd = builddir)
         if self.build_objc_wrapper:
             cmakecmd = self.makeCMakeCmd(arch, target, builddir + "/modules/objc_bindings_generator/{}/gen".format(self.getObjcTarget()), cmakeargs)
+            # cmakecmd.append("-DCMAKE_Swift_FLAGS=" + "-target x86_64-apple-ios13.0-macabi")
+            # cmakecmd.append("-DCMAKE_EXE_LINKER_FLAGS=" + "-target x86_64-apple-ios13.0-macabi")
             cmakecmd.append("-DBUILD_ROOT=%s" % builddir)
             cmakecmd.append("-DCMAKE_INSTALL_NAME_TOOL=install_name_tool")
             cmakecmd.append("--no-warn-unused-cli")
