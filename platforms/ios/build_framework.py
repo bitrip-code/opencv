@@ -39,7 +39,7 @@ from distutils.dir_util import copy_tree
 sys.path.insert(0, os.path.abspath(os.path.abspath(os.path.dirname(__file__))+'/../apple'))
 from cv_build_utils import execute, print_error, get_xcode_major, get_xcode_setting
 
-IPHONEOS_DEPLOYMENT_TARGET='9.0'  # default, can be changed via command line options or environment variable
+IPHONEOS_DEPLOYMENT_TARGET='12.0'  # default, can be changed via command line options or environment variable
 
 class Builder:
     def __init__(self, opencv, contrib, dynamic, bitcodedisabled, exclude, disable, enablenonfree, targets, debug, debug_info, framework_name, run_tests, build_docs):
